@@ -209,25 +209,55 @@ BattleService --> InvalidBattleException
 
 ---
 
-## 8. Setup Instructions
+## 8. Setup & Tomcat Deployment Instructions
 
 ### Prerequisites
 * Java Development Kit (JDK 17 or higher)
 * Apache Maven (3.8+)
+* Apache Tomcat 10.1+ (installed at `/Users/srijannanduri/apache-tomcat`)
 
-### Compilation & Build
-To compile the source files and package the application, execute:
+### 🚀 Quick Deploy to Tomcat (Automated)
+Run the automated deployment script to build the WAR package, copy it to Tomcat, and start the server:
 ```bash
-mvn clean compile
+./deploy.sh
+```
+Once deployed, open your browser at:
+* **Web App URL**: [http://localhost:8080/battle-simulation-system/](http://localhost:8080/battle-simulation-system/) (or [http://localhost:8080/](http://localhost:8080/))
+
+### 🕹️ Tomcat Control Scripts
+* **Start Tomcat**: `./start-tomcat.sh`
+* **Stop Tomcat**: `./stop-tomcat.sh`
+* **Full Rebuild & Redeploy**: `./deploy.sh`
+
+### 🌐 Web Application & REST API Endpoints
+| Endpoint | Method | Description |
+|---|---|---|
+| `/` or `/battle-simulation-system/` | `GET` | Interactive Single-Page Web Application UI |
+| `/api/status` | `GET` | Health check, server info, and registry metrics |
+| `/api/characters` | `GET` | List all characters or search (`?search=name`) |
+| `/api/characters` | `POST` | Register new character (Captain, Swordsman, etc.) |
+| `/api/characters` | `DELETE` | Dismiss character by name (`?name=name`) |
+| `/api/crews` | `GET` | List all pirate crews and member compositions |
+| `/api/crews` | `POST` | Create crew or add member (`action=create` / `action=addMember`) |
+| `/api/crews` | `DELETE` | Remove member from crew |
+| `/api/battle` | `POST` | Simulate turn-based battle (`fighter1`, `fighter2`) |
+| `/api/history` | `GET` | View archived battle history |
+| `/api/history` | `DELETE` | Purge archived battle history |
+| `/api/demo` | `GET` | Execute live OOP Polymorphism & Interface showcase |
+
+### Compilation & Build (Manual)
+To package the WAR manually:
+```bash
+mvn clean package
 ```
 
 ### Running Unit Tests
-To execute the JUnit 5 test suite covering all service methods and exceptions:
+To execute the JUnit 5 test suite covering all service methods, combat rules, and exception cases:
 ```bash
 mvn test
 ```
 
-### Running the Application
+### Running the Legacy CLI Application
 To run the interactive CLI program:
 ```bash
 mvn exec:java -Dexec.mainClass="Main"

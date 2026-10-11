@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>One Piece Battle Simulation System | Tomcat Enterprise Deployment</title>
+  <meta name="description" content="Enterprise-grade Java One Piece Battle Simulation System deployed on Apache Tomcat. Featuring turn-based combat, pirate crew management, and OOP polymorphism.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👒</text></svg>">
+</head>
+<body>
+
+  <!-- Dynamic background grid pattern -->
+  <div class="bg-mesh"></div>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="site-header" id="siteHeader">
+      <div class="brand-wrapper">
+        <div class="brand-emblem" id="brandEmblem">👒</div>
+        <div>
+          <h1 class="brand-title">ONE PIECE BATTLE SIMULATOR</h1>
+          <div class="brand-subtitle">Java Enterprise Architecture &bull; Apache Tomcat</div>
+        </div>
+      </div>
+
+      <div class="header-status-panel">
+        <div class="tomcat-pill" id="tomcatStatusPill">
+          <span class="status-dot"></span> Tomcat Initializing...
+        </div>
+        <button class="icon-button" id="soundToggleBtn" aria-label="Toggle Sound">
+          🔊 Sound: On
+        </button>
+      </div>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav class="main-nav" id="mainNav">
+      <button class="nav-tab active" data-tab="arenaTab" id="tabBtnArena">
+        <span>⚔️</span> Arena
+      </button>
+      <button class="nav-tab" data-tab="charactersTab" id="tabBtnCharacters">
+        <span>🏴‍☠️</span> Roster <span class="tab-badge" id="charsBadge">0</span>
+      </button>
+      <button class="nav-tab" data-tab="crewsTab" id="tabBtnCrews">
+        <span>⚓</span> Pirate Fleets <span class="tab-badge" id="crewsBadge">0</span>
+      </button>
+      <button class="nav-tab" data-tab="historyTab" id="tabBtnHistory">
+        <span>📜</span> Chronicles <span class="tab-badge" id="historyBadge">0</span>
+      </button>
+      <button class="nav-tab" data-tab="labTab" id="tabBtnLab">
+        <span>⚡</span> Polymorphism Lab
+      </button>
+    </nav>
+
+    <!-- ====================================================================
+         TAB 1: ARENA
+         ==================================================================== -->
+    <section class="tab-panel active" id="arenaTab">
+      <div class="arena-grid">
+        <div class="matchup-card" id="matchupCard">
+          <div class="combatants-stage">
+            <!-- Fighter 1 -->
+            <div class="fighter-card" id="fighter1Card">
+              <div class="fighter-header">
+                <span class="fighter-role-badge" id="fighter1RoleBadge">Combatant 1</span>
+              </div>
+              <select class="fighter-select-dropdown" id="fighter1Select" aria-label="Select Combatant 1"></select>
+              <div class="fighter-avatar" id="fighter1Avatar">❓</div>
+              <div class="fighter-name-display" id="fighter1NameDisplay">Choose Fighter</div>
+              <div class="fighter-subtext" id="fighter1Subtext">Select a pirate above</div>
+
+              <div class="hp-container">
+                <div class="hp-labels">
+                  <span>HP</span>
+                  <span id="fighter1HpText">0 / 0</span>
+                </div>
+                <div class="hp-bar-bg">
+                  <div class="hp-bar-fill" id="fighter1HpFill"></div>
+                </div>
+              </div>
+
+              <div class="fighter-stats-preview">
+                <div class="stat-item-mini">
+                  <div class="stat-val" id="fighter1AtkVal">-</div>
+                  <div class="stat-lbl">Attack</div>
+                </div>
+                <div class="stat-item-mini">
+                  <div class="stat-val" id="fighter1DefVal">-</div>
+                  <div class="stat-lbl">Defense</div>
+                </div>
+                <div class="stat-item-mini">
+                  <div class="stat-val" style="color: var(--gold-glow)">★</div>
+                  <div class="stat-lbl">Combat</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Versus Center Divider -->
+            <div class="versus-divider">
+              <div class="vs-badge">VS</div>
+              <button class="random-match-btn" id="randomMatchBtn">🎲 Randomize</button>
+            </div>
+
+            <!-- Fighter 2 -->
+            <div class="fighter-card" id="fighter2Card">
+              <div class="fighter-header">
+                <span class="fighter-role-badge" id="fighter2RoleBadge">Combatant 2</span>
+              </div>
+              <select class="fighter-select-dropdown" id="fighter2Select" aria-label="Select Combatant 2"></select>
+              <div class="fighter-avatar" id="fighter2Avatar">❓</div>
+              <div class="fighter-name-display" id="fighter2NameDisplay">Choose Fighter</div>
+              <div class="fighter-subtext" id="fighter2Subtext">Select a pirate above</div>
+
+              <div class="hp-container">
+                <div class="hp-labels">
+                  <span>HP</span>
+                  <span id="fighter2HpText">0 / 0</span>
+                </div>
+                <div class="hp-bar-bg">
+                  <div class="hp-bar-fill" id="fighter2HpFill"></div>
+                </div>
+              </div>
+
+              <div class="fighter-stats-preview">
+                <div class="stat-item-mini">
+                  <div class="stat-val" id="fighter2AtkVal">-</div>
+                  <div class="stat-lbl">Attack</div>
+                </div>
+                <div class="stat-item-mini">
+                  <div class="stat-val" id="fighter2DefVal">-</div>
+                  <div class="stat-lbl">Defense</div>
+                </div>
+                <div class="stat-item-mini">
+                  <div class="stat-val" style="color: var(--gold-glow)">★</div>
+                  <div class="stat-lbl">Combat</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="arena-action-bar">
+            <button class="commence-battle-btn" id="commenceBattleBtn">
+              <span>⚔️</span> COMMENCE BATTLE
+            </button>
+          </div>
+        </div>
+
+        <!-- Live Battle Replay Theater -->
+        <div class="battle-theater" id="battleTheater">
+          <div class="theater-header">
+            <div class="theater-title">
+              <span>🏟️</span> Grand Line Duel Simulation
+            </div>
+            <div class="replay-controls">
+              <span style="font-size: 0.8rem; color: var(--text-dim)">Pacing:</span>
+              <button class="theater-speed-btn active" data-speed="600">Normal (1x)</button>
+              <button class="theater-speed-btn" data-speed="250">Fast (2x)</button>
+              <button class="theater-speed-btn" data-speed="0">Instant</button>
+            </div>
+          </div>
+
+          <!-- Current Turn Spotlight -->
+          <div class="live-round-box">
+            <span class="round-indicator-pill" id="roundIndicatorPill">ROUND 1</span>
+            <div class="round-action-title" id="roundActionTitle">Combat Ready</div>
+            <div class="round-action-desc" id="roundActionDesc">Awaiting combat sequence...</div>
+          </div>
+
+          <!-- Live Combat Terminal -->
+          <div class="combat-terminal" id="combatTerminal"></div>
+
+          <!-- Victory Banner -->
+          <div class="victory-card" id="victoryCard">
+            <div class="victory-icon">🏆</div>
+            <div class="victory-title" id="victoryWinnerName">WINNER</div>
+            <div class="victory-summary" id="victorySummaryText"></div>
+            <button class="btn-primary" id="rematchBtn" style="margin: 0 auto;">⚔️ Rematch</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         TAB 2: CHARACTER ROSTER
+         ==================================================================== -->
+    <section class="tab-panel" id="charactersTab">
+      <div class="section-toolbar">
+        <div class="search-input-wrapper">
+          <span class="search-icon">🔍</span>
+          <input type="text" class="search-input" id="charSearchInput" placeholder="Search by name, role, devil fruit...">
+        </div>
+
+        <div class="filter-group">
+          <button class="filter-btn active" data-role="all">All</button>
+          <button class="filter-btn" data-role="Captain">Captains</button>
+          <button class="filter-btn" data-role="Swordsman">Swordsmen</button>
+          <button class="filter-btn" data-role="Navigator">Navigators</button>
+          <button class="filter-btn" data-role="DevilFruitUser">Devil Fruit</button>
+        </div>
+
+        <button class="btn-primary" id="openRecruitModalBtn">+ Recruit Character</button>
+      </div>
+
+      <div class="roster-grid" id="characterRosterGrid"></div>
+    </section>
+
+    <!-- ====================================================================
+         TAB 3: PIRATE CREWS FLEET
+         ==================================================================== -->
+    <section class="tab-panel" id="crewsTab">
+      <div class="section-toolbar">
+        <div>
+          <h2 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--gold-glow);">Pirate Alliances & Crews</h2>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Manage pirate armada compositions, captains, and crew rosters.</p>
+        </div>
+        <button class="btn-primary" id="openCreateCrewModalBtn">+ Create Pirate Fleet</button>
+      </div>
+
+      <div class="crews-grid" id="crewsFleetGrid"></div>
+    </section>
+
+    <!-- ====================================================================
+         TAB 4: CHRONICLES (HISTORY)
+         ==================================================================== -->
+    <section class="tab-panel" id="historyTab">
+      <div class="section-toolbar">
+        <div>
+          <h2 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--gold-glow);">Grand Line Chronicles</h2>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Persistent battle logs archive stored in Tomcat's filesystem.</p>
+        </div>
+        <button class="btn-card-action danger" id="clearHistoryBtn" style="flex: initial; padding: 0.6rem 1.2rem;">Purge Archives</button>
+      </div>
+
+      <div class="history-card">
+        <div class="history-list" id="historyListContainer"></div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         TAB 5: POLYMORPHISM LAB
+         ==================================================================== -->
+    <section class="tab-panel" id="labTab">
+      <div class="lab-card">
+        <div class="section-toolbar">
+          <div>
+            <h2 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--gold-glow);">Java OOP Polymorphism & Interfaces Lab</h2>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Demonstrating dynamic dispatch, abstract base classes, and interface contracts.</p>
+          </div>
+          <button class="btn-primary" id="runDemoBtn">⚡ Run Live Execution</button>
+        </div>
+
+        <div class="concept-grid">
+          <div class="concept-box">
+            <div class="concept-title">Abstraction</div>
+            <div class="concept-text">Base class <code>Character</code> defines abstract templates <code>attack()</code> and <code>specialMove()</code> with encapsulated stats.</div>
+          </div>
+          <div class="concept-box">
+            <div class="concept-title">Polymorphism</div>
+            <div class="concept-text">Parent references (<code>Character c = new Captain(...)</code>) dynamically resolve subclass behaviors at runtime.</div>
+          </div>
+          <div class="concept-box">
+            <div class="concept-title">HakiUser Interface</div>
+            <div class="concept-text">Defines <code>useHaki(target)</code> contract to bypass physical armor and deal pure unmitigated damage.</div>
+          </div>
+          <div class="concept-box">
+            <div class="concept-title">SpecialAbility Interface</div>
+            <div class="concept-text">Defines <code>activateSpecialAbility(target)</code> invoking unique combat awakenings (Ashura, Clima-Tact, etc.).</div>
+          </div>
+        </div>
+
+        <h3 style="font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.75rem; color: var(--gold-glow);">Execution Console Output:</h3>
+        <div class="lab-terminal-output" id="labTerminal">
+          Click "Run Live Execution" to run polymorphic dispatch on the backend server.
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ====================================================================
+       MODALS
+       ==================================================================== -->
+
+  <!-- Recruit Character Modal -->
+  <div class="modal-overlay" id="recruitModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Recruit New Pirate</h3>
+        <button class="modal-close-btn" id="closeRecruitModalBtn">&times;</button>
+      </div>
+      <form class="modal-form" id="recruitForm">
+        <div class="form-group">
+          <label class="form-label">Role Classification</label>
+          <select id="newCharRole" class="form-select" required>
+            <option value="Captain">Captain</option>
+            <option value="Swordsman">Swordsman</option>
+            <option value="Navigator">Navigator</option>
+            <option value="DevilFruitUser">Devil Fruit User</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Character Name</label>
+          <input type="text" id="newCharName" class="form-input" placeholder="e.g. Vinsmoke Sanji" required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Health (HP)</label>
+            <input type="number" id="newCharHp" class="form-input" min="10" max="300" value="100" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Attack (ATK)</label>
+            <input type="number" id="newCharAtk" class="form-input" min="1" max="200" value="70" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Defense (DEF)</label>
+            <input type="number" id="newCharDef" class="form-input" min="0" max="100" value="20" required>
+          </div>
+        </div>
+
+        <div id="dynamicRoleFields">
+          <div class="form-group">
+            <label class="form-label">Affiliated Crew Name</label>
+            <input type="text" id="newCharCrew" class="form-input" placeholder="e.g. StrawHat Pirates" required>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary" style="margin-top: 0.5rem; justify-content: center;">
+          Recruit to Fleet
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Create Crew Modal -->
+  <div class="modal-overlay" id="createCrewModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Found Pirate Fleet</h3>
+        <button class="modal-close-btn" id="closeCreateCrewModalBtn">&times;</button>
+      </div>
+      <form class="modal-form" id="createCrewForm">
+        <div class="form-group">
+          <label class="form-label">Fleet / Crew Name</label>
+          <input type="text" id="newCrewNameInput" class="form-input" placeholder="e.g. Blackbeard Pirates" required>
+        </div>
+        <button type="submit" class="btn-primary" style="margin-top: 0.5rem; justify-content: center;">
+          Found Fleet
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Add Member Modal -->
+  <div class="modal-overlay" id="addMemberModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Enlist Pirate into Crew</h3>
+        <button class="modal-close-btn" id="closeAddMemberModalBtn">&times;</button>
+      </div>
+      <form class="modal-form" id="addMemberForm">
+        <div class="form-group">
+          <label class="form-label">Target Crew</label>
+          <select id="newMemberCrewSelect" class="form-select" required></select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Character to Enlist</label>
+          <select id="newMemberCharSelect" class="form-select" required></select>
+        </div>
+        <button type="submit" class="btn-primary" style="margin-top: 0.5rem; justify-content: center;">
+          Enlist Pirate
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="js/audio.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
